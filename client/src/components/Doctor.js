@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { ExitToApp, PermIdentity, HomeOutlined } from "@material-ui/icons";
 
-import { HOME, PROFILE } from "../constants/routes";
+import { HOME, PROFILE, ADD_ARTICLE } from "../constants/routes";
 import { getUser, userLogout, getInfoUserLogin } from "../store/auth";
 
 const Doctor = () => {
@@ -54,7 +54,7 @@ const Doctor = () => {
           <PermIdentity color="primary" />
           <span style={styles.titleIcon}>Profile </span>
         </MenuItem>
-        <MenuItem onClick={handleNavigate("/")}>
+        <MenuItem onClick={handleNavigate(ADD_ARTICLE)}>
           <HomeOutlined color="primary" />
           <span style={styles.titleIcon}>Add Article</span>
         </MenuItem>

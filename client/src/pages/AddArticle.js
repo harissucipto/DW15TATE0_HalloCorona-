@@ -1,22 +1,24 @@
 import React from "react";
-import Header from "../components/Header";
-import ListReservasi from "../components/ListReservasi";
-import { checkIsDoctor } from "../store/auth";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+
+import FormAddArticle from "../components/FormAddArticle";
+import Header from "../components/Header";
+import { checkIsDoctor } from "../store/auth";
 import { HOME } from "../constants/routes";
 
-const Reservasi = () => {
+const AddArticle = () => {
   const isDoctor = useSelector(checkIsDoctor);
-
   if (!isDoctor) return <Redirect to={HOME} />;
 
   return (
     <div>
       <Header />
-      <ListReservasi />
+      <div>
+        <FormAddArticle />
+      </div>
     </div>
   );
 };
 
-export default Reservasi;
+export default AddArticle;

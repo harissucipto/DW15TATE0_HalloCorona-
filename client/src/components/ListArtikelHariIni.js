@@ -1,20 +1,22 @@
 import React, { useEffect } from "react";
+// import { format } from "date-fns";
 import { useSelector, useDispatch } from "react-redux";
 import { Grid } from "@material-ui/core";
 
 import { getArticles, loadArticles } from "../store/articles";
 import ItemArtikel from "./ItemArtikel";
 import Loading from "./Loading";
-import { format } from "date-fns";
 
-const stringDateQuery = (date) => format(date, "MM-dd-yyyy");
+// const stringDateQuery = (date) => format(date, "MM-dd-yyyy");
 
 const ListArtikelHariIni = () => {
   const { list, loading, message } = useSelector(getArticles);
   const dispatch = useDispatch();
 
+  // const query = `createdAt=${stringDateQuery(new Date())}`;
+
   useEffect(() => {
-    dispatch(loadArticles(`createdAt=${stringDateQuery(new Date())}`));
+    dispatch(loadArticles(""));
   }, [dispatch]);
 
   if (loading) return <Loading />;

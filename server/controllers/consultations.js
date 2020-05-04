@@ -18,6 +18,12 @@ const fetchFromUser = async (req, res) => {
         {
           model: Reply,
           attributes: { exclude: ["createdAt", "updatedAt"] },
+          include: [
+            {
+              model: User,
+              attributes: ["id", "fullName", "createdAt"],
+            },
+          ],
         },
       ],
     });
@@ -37,13 +43,17 @@ const fetchFromDoctor = async (req, res) => {
     const listData = await Consultation.findAll({
       include: [
         {
-          model: Reply,
+          model: User,
           attributes: { exclude: ["createdAt", "updatedAt"] },
-          // where: {
-          //   [Op.and]: {
-          //     userId,
-          //   },
-          // },
+        },
+        {
+          model: Reply,
+          include: [
+            {
+              model: User,
+              attributes: ["id", "fullName", "createdAt"],
+            },
+          ],
         },
       ],
     });
@@ -80,6 +90,12 @@ exports.getConsultation = async (req, res) => {
         {
           model: Reply,
           attributes: { exclude: ["createdAt", "updatedAt"] },
+          include: [
+            {
+              model: User,
+              attributes: ["id", "fullName", "createdAt"],
+            },
+          ],
         },
         {
           model: User,
@@ -101,7 +117,7 @@ exports.createConsultation = async (req, res) => {
     const newData = {
       userId,
       ...req.body,
-      status: "Waiting Consultant",
+      status: "Waiting Approve Consultation Live",
     };
 
     const consultation = await Consultation.create(newData);
@@ -130,11 +146,14 @@ exports.createReply = async (req, res) => {
 
     const newReply = await Reply.create(newData);
 
-    if (!reply) return res.status(401).send({ message: "data invalid" });
+    if (!newReply) return res.status(401).send({ message: "data invalid" });
 
-    const newConsultant = await Consultation.update({
-      ...consultation,
-    });
+    const newConsultant = await Consultation.update(
+      {
+        ...consultation,
+      },
+      { where: { id: consultationId } }
+    );
 
     if (!newConsultant)
       return res.status(401).send({ message: "data invalid" });
@@ -144,8 +163,18 @@ exports.createReply = async (req, res) => {
       include: [{ model: Consultation }],
     });
 
-    res.send({ data: reply });
+    if (!reply) return res.status(401).send({ message: "data invalid" });
+
+    // res.status(200).send(reply);
+
+    return this.getConsultation(
+      {
+        ...req,
+        params: { ...req.params, id: consultationId },
+      },
+      res
+    );
   } catch (error) {
-    res.send(error);
+    res.status(500).send(error);
   }
 };

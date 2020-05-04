@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Chip } from "@material-ui/core";
 import Header from "../components/Header";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";

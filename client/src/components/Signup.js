@@ -189,8 +189,8 @@ const Signup = () => {
               <TextField
                 variant="filled"
                 fullWidth
-                value={address}
-                onChange={saveValue(setAddress)}
+                value={phone}
+                onChange={saveValue(setPhone)}
               />
               <h2>Address</h2>
               <TextField
@@ -198,8 +198,8 @@ const Signup = () => {
                 rows="6"
                 variant="filled"
                 fullWidth
-                value={phone}
-                onChange={saveValue(setPhone)}
+                value={address}
+                onChange={saveValue(setAddress)}
               />
             </div>
           )}

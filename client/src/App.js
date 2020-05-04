@@ -7,11 +7,15 @@ import DetailArtikel from "./pages/DetailArtikel";
 import BuatKonsultasi from "./pages/BuatKonsultasi";
 import Reservasi from "./pages/Reservasi";
 import Profile from "./pages/Profile";
+import AddArticle from "./pages/AddArticle";
+import Konsultasi from "./pages/Konsultasi";
 
 function App() {
   return (
     <Router>
       <Switch>
+        <Route path={PATHS.CONSULTATION} component={Konsultasi} />
+        <Route path={PATHS.ADD_ARTICLE} component={AddArticle} />
         <Route path={PATHS.PROFILE} component={Profile} />
         <Route path={PATHS.RESERVATION} component={Reservasi} />
         <Route path={PATHS.CREATE_CONSULTATION} component={BuatKonsultasi} />

@@ -3,7 +3,7 @@ import { Avatar, Menu, MenuItem } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { ExitToApp, PermIdentity, RestorePage } from "@material-ui/icons";
 
-import { HOME, PROFILE, CREATE_CONSULTATION } from "../constants/routes";
+import { HOME, PROFILE, CONSULTATION } from "../constants/routes";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser, userLogout, getInfoUserLogin } from "../store/auth";
 
@@ -55,7 +55,7 @@ const User = () => {
           <PermIdentity color="secondary" />
           <span style={styles.titleIcon}>Profile </span>
         </MenuItem>
-        <MenuItem onClick={handleNavigate(CREATE_CONSULTATION)}>
+        <MenuItem onClick={handleNavigate(CONSULTATION)}>
           <RestorePage color="secondary" />
           <span style={styles.titleIcon}>Consultation</span>
         </MenuItem>
