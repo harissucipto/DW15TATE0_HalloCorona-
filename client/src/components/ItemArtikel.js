@@ -21,7 +21,7 @@ const ItemArtikel = ({ title, description, label = [], id }) => {
         }}
       />
       <h1>{title}</h1>
-      <p>{description}</p>
+      <p>{String(description).substr(0, 200) + "..."}</p>
       {
         // label
         // <div>
@@ -41,7 +41,7 @@ const styles = {
   },
   image: {
     width: "100%",
-    height: "180px",
+    height: "16em",
     backgroundColor: "grey",
     backgroundSize: "cover",
     repeat: "no-repeat",

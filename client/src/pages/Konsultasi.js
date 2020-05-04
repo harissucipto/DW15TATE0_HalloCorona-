@@ -2,13 +2,15 @@ import React from "react";
 
 import Header from "../components/Header";
 import ListKonsultasi from "../components/ListKonsultasi";
+import Title from "../components/Title";
 
 const Konsultasi = () => {
   return (
     <div>
       <Header />
-      <div style={{ maxWidth: "1080px", margin: "0 auto" }}>
-        <h1>Consultation</h1>
+      <hr />
+      <div className="sub-rumah">
+        <Title text="Consultation" />
         <ListKonsultasi />
       </div>
     </div>

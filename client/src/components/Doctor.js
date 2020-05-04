@@ -39,7 +39,7 @@ const Doctor = () => {
     <>
       <Avatar
         onClick={handleClick}
-        style={{ backgroundColor: "blue", cursor: "pointer" }}
+        style={{ backgroundColor: "pink", cursor: "pointer" }}
       >
         {titleAvatar}
       </Avatar>

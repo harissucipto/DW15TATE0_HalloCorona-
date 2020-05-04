@@ -5,6 +5,7 @@ import { checkIsDoctor } from "../store/auth";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { HOME } from "../constants/routes";
+import Title from "../components/Title";
 
 const Reservasi = () => {
   const isDoctor = useSelector(checkIsDoctor);
@@ -14,7 +15,11 @@ const Reservasi = () => {
   return (
     <div>
       <Header />
-      <ListReservasi />
+      <hr />
+      <div className="sub-rumah">
+        <Title text="Reservasi Data" />
+        <ListReservasi />
+      </div>
     </div>
   );
 };

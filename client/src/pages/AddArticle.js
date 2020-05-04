@@ -6,6 +6,7 @@ import FormAddArticle from "../components/FormAddArticle";
 import Header from "../components/Header";
 import { checkIsDoctor } from "../store/auth";
 import { HOME } from "../constants/routes";
+import Title from "../components/Title";
 
 const AddArticle = () => {
   const isDoctor = useSelector(checkIsDoctor);
@@ -14,7 +15,9 @@ const AddArticle = () => {
   return (
     <div>
       <Header />
-      <div>
+      <hr />
+      <div className="sub-rumah">
+        <Title text="Add Article" />
         <FormAddArticle />
       </div>
     </div>

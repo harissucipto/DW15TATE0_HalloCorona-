@@ -32,11 +32,13 @@ const ListKonsultasi = () => {
           <h3>Tidak Ada Konsultasi</h3>
         </div>
       )}
-      {list.map((item) => (
-        <div key={item.id}>
-          <ItemKonsultasi {...item} />
-        </div>
-      ))}
+      {!loading &&
+        list.length &&
+        list.map((item) => (
+          <div key={item.id}>
+            <ItemKonsultasi {...item} />
+          </div>
+        ))}
     </div>
   );
 };

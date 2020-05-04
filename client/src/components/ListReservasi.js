@@ -55,14 +55,12 @@ const ListReservasi = () => {
     <div>
       {!loading && !list.length ? (
         <div>
-          <h1>Reservation</h1>
           <hr />
           <h3>Tidak ada data</h3>
         </div>
       ) : null}
       {!loading && list.length && (
         <>
-          <h1>Reservation</h1>
           <TableContainer component={Paper}>
             <Table>
               <TableHead>

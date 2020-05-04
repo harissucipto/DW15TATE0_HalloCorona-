@@ -12,3 +12,28 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
 }
+
+.logo-rumah {
+  text-align: center;
+}
+
+.rumah {
+  margin: 0 10px;
+  max-width: 1800px;
+}
+
+.sub-rumah {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 960px) {
+  .logo-rumah {
+    text-align: left;
+  }
+
+  .rumah {
+    margin: 0 auto;
+    max-width: 1800px;
+  }
+}

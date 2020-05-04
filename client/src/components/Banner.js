@@ -18,42 +18,60 @@ const styles = (theme) => ({
   title: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
     justifyContent: "center",
+    marginBottom: "5px",
   },
 });
 
 const Banner = withStyles(styles)(({ classes }) => {
   return (
-    <Grid container className={classes.container}>
-      <Grid item xs={12} md={5}>
-        <Grid container>
-          <Grid item>
-            <img src={Virus} alt="virus" />
-          </Grid>
-          <Grid item className={classes.title}>
-            <h1>Cegah Covid-19 </h1>
-            <h2>dengan Melakukan: </h2>
-          </Grid>
-        </Grid>
-        <Konsultasi />
-      </Grid>
-
-      <Grid item xs={12} md={7}>
-        <Grid
-          container
-          justify="space-around"
-          alignItems="center"
-          className={classes.listCara}
-        >
-          {listUrlCara.map((item, index) => (
-            <Grid item key={index}>
-              <img src={require(`../images/${item}`)} alt="igm" />
+    <div className={classes.container}>
+      <div className="rumah">
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={5}>
+            <Grid container spacing={2}>
+              <Grid item>
+                <img src={Virus} alt="virus" />
+              </Grid>
+              <Grid item className={classes.title}>
+                <h1 style={{ margin: 0, padding: 0, fontSize: "3em" }}>
+                  Cegah Covid-19{" "}
+                </h1>
+                <h2 style={{ margin: 0, padding: 0, fontSize: "2em" }}>
+                  dengan Melakukan:{" "}
+                </h2>
+              </Grid>
+              <Grid item xs={12}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    width: "100%",
+                  }}
+                >
+                  <Konsultasi />
+                </div>
+              </Grid>
             </Grid>
-          ))}
+          </Grid>
+
+          <Grid item xs={12} md={7}>
+            <Grid
+              container
+              justify="space-around"
+              alignItems="center"
+              className={classes.listCara}
+            >
+              {listUrlCara.map((item, index) => (
+                <Grid item key={index}>
+                  <img src={require(`../images/${item}`)} alt="igm" />
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
         </Grid>
-      </Grid>
-    </Grid>
+      </div>
+    </div>
   );
 });
 

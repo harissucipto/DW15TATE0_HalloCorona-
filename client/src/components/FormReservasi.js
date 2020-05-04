@@ -18,7 +18,11 @@ import {
 } from "../store/consultations";
 import Loading from "./Loading";
 
-const formatDate = (date) => format(date, "yyyy-MM-dd");
+const formatDate = (date) => {
+  if (!date) return "";
+
+  format(date, "yyyy-MM-dd");
+};
 
 const genders = [
   {
@@ -85,7 +89,7 @@ const FormReservasi = () => {
       weight,
       gender,
       subject,
-      liveConsul: formatDate(new Date(bornDate), "MM-dd-yyyy"),
+      liveConsul: formatDate(new Date(liveConsul), "MM-dd-yyyy"),
       description,
     };
 
@@ -198,7 +202,7 @@ const FormReservasi = () => {
           onChange={saveValue(setDescription)}
         />
 
-        <div sytle={styles.submit}>
+        <div style={{ marginTop: "2em", marginBottom: "2em" }}>
           <Grid container justify="center">
             <Grid item>
               <Button

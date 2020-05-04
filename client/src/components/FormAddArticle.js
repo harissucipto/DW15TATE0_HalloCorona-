@@ -53,7 +53,6 @@ const FormAddArticle = () => {
 
   return (
     <div>
-      <h1>Add Article</h1>
       <p>{message}</p>
       <div style={{ margin: "2rem 2rem" }}>
         <div>
@@ -81,7 +80,6 @@ const FormAddArticle = () => {
         style={{
           width: "300px",
           margin: "0 auto",
-          backgroundColor: "red",
           borderRadius: "5px",
           marginTop: "88px",
         }}
@@ -89,7 +87,7 @@ const FormAddArticle = () => {
         <Button
           disabled={!isCanSubmit}
           variant="contained"
-          color="primary"
+          color="secondary"
           fullWidth
           onClick={handleSubmit}
         >

@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Grid } from "@material-ui/core";
 
 import { checkIsLogin, checkIsUser } from "../store/auth";
 import Signin from "./Signin";
@@ -13,18 +14,34 @@ const Auth = () => {
 
   return (
     <div>
-      {isLogin ? (
-        isUser ? (
-          <User />
+      <Grid
+        container
+        spacing={4}
+        justify="flex-end"
+        alignItems="center"
+        style={{ margin: "0px", height: "100%" }}
+      >
+        {isLogin ? (
+          isUser ? (
+            <Grid item>
+              <User />
+            </Grid>
+          ) : (
+            <Grid item>
+              <Doctor />
+            </Grid>
+          )
         ) : (
-          <Doctor />
-        )
-      ) : (
-        <>
-          <Signin />
-          <Signup />
-        </>
-      )}
+          <>
+            <Grid item>
+              <Signin />
+            </Grid>
+            <Grid item>
+              <Signup />
+            </Grid>
+          </>
+        )}
+      </Grid>
     </div>
   );
 };

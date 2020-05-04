@@ -1,6 +1,7 @@
 import React from "react";
-import { Grid, CardContent, Card } from "@material-ui/core";
+import { Grid, CardContent, Card, Avatar } from "@material-ui/core";
 import { format } from "date-fns";
+import { pink } from "@material-ui/core/colors";
 const stringDate = (dateString) => {
   if (!dateString) return "-";
 
@@ -18,6 +19,7 @@ const ItemKonsultasi = ({
   liveConsul,
   Replies,
   status,
+  User,
 }) => {
   return (
     <Card variant="outlined" style={{ marginBottom: "20px" }}>
@@ -25,12 +27,26 @@ const ItemKonsultasi = ({
         <div>
           <Grid container justify="space-around">
             <Grid item xs={12} sm={4} md={2}>
-              <div style={styles.avatarUser} />
+              <Avatar
+                style={{
+                  height: "100px",
+                  width: "100px",
+                  fontSize: "2em",
+                  margin: "0 auto",
+                  backgroundColor: pink[200],
+                }}
+              >
+                {User.fullName
+                  ?.split(" ")
+                  .map((item) => item.slice(0, 1))
+                  .join("")
+                  .toUpperCase() ?? "U"}
+              </Avatar>
             </Grid>
             <Grid item xs={12} sm={6} md={8}>
               <h1 style={styles.title}>{subject}</h1>
               <p>{stringDate(createdAt)}</p>
-              <p>{description}</p>
+              <p>Keluhan: {description}</p>
             </Grid>
             <Grid item xs={12} sm={2} md={2}>
               <b>{stringDate(liveConsul)}</b>
@@ -38,8 +54,8 @@ const ItemKonsultasi = ({
           </Grid>
           <hr />
           {isWaitingApprove(status) ? (
-            <div>
-              <h3>{status}</h3>
+            <div style={{ textAlign: "center" }}>
+              <h2>{status}</h2>
             </div>
           ) : (
             Replies.map((item, index) => (
@@ -47,14 +63,27 @@ const ItemKonsultasi = ({
                 <Grid item xs={12} sm={4} md={2}>
                   <Grid container justify="flex-end">
                     <Grid item>
-                      <div style={styles.avatarReply} />
+                      <Avatar
+                        style={{
+                          height: "50px",
+                          width: "50px",
+                          fontSize: "2em",
+                          margin: "0 auto",
+                          backgroundColor: pink[200],
+                        }}
+                      >
+                        {item.User.fullName
+                          ?.split(" ")
+                          .map((item) => item.slice(0, 1))
+                          .join("")
+                          .toUpperCase() ?? "D"}
+                      </Avatar>
                     </Grid>
                   </Grid>
                 </Grid>
                 <Grid item xs={12} sm={8} md={8}>
                   <p style={styles.title}>{item.response}</p>
-                  <p>{stringDate(item.createdAt)}</p>
-                  <p>{item.fullName}</p>
+                  <p>{item.User.fullName}</p>
                 </Grid>
               </Grid>
             ))

@@ -7,9 +7,6 @@ import { HOME } from "../constants/routes";
 import Auth from "./Auth";
 
 const styles = (theme) => ({
-  container: {
-    padding: "2rem 5rem",
-  },
   logo: {
     cursor: "pointer",
   },
@@ -21,19 +18,18 @@ const Header = withStyles(styles)(({ classes }) => {
   const navigate = (path) => () => history.push(path);
 
   return (
-    <Grid container justify="space-between" alignItems="center">
-      <Grid item>
-        <img
-          src={Logo}
-          alt="logo"
-          className={classes.logo}
-          onClick={navigate(HOME)}
-        />
+    <div className="rumah">
+      <Grid container spacing={4}>
+        <Grid item xs={12} sm={6}>
+          <div className="logo-rumah">
+            <img src={Logo} alt="logo" onClick={navigate(HOME)} />
+          </div>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Auth />
+        </Grid>
       </Grid>
-      <Grid item>
-        <Auth />
-      </Grid>
-    </Grid>
+    </div>
   );
 });
 

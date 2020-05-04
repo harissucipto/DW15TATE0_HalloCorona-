@@ -8,17 +8,22 @@ import Header from "../components/Header";
 import Banner from "../components/Banner";
 import ListArtikelHariIni from "../components/ListArtikelHariIni";
 import { RESERVATION } from "../constants/routes";
+import Title from "../components/Title";
 
 function Home() {
   const isDoctor = useSelector(checkIsDoctor);
   if (isDoctor) return <Redirect to={RESERVATION} />;
 
   return (
-    <Grid container>
+    <div>
       <Header />
+      <hr />
       <Banner />
-      <ListArtikelHariIni />
-    </Grid>
+      <div className="rumah">
+        <Title text={"Artikel Hari ini"} style={{ textAlign: "center" }} />
+        <ListArtikelHariIni />
+      </div>
+    </div>
   );
 }
 

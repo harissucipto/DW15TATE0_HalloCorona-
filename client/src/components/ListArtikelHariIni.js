@@ -6,6 +6,7 @@ import { Grid } from "@material-ui/core";
 import { getArticles, loadArticles } from "../store/articles";
 import ItemArtikel from "./ItemArtikel";
 import Loading from "./Loading";
+import Title from "./Title";
 
 // const stringDateQuery = (date) => format(date, "MM-dd-yyyy");
 
@@ -25,11 +26,8 @@ const ListArtikelHariIni = () => {
 
   return (
     <Grid container>
-      <Grid item xs={12} style={{ textAlign: "center" }}>
-        <h1>Artikel Hari Ini</h1>
-      </Grid>
       <Grid item xs={12}>
-        <Grid container spacing={3}>
+        <Grid container spacing={5}>
           {list.map((item, index) => (
             <Grid item xs={12} md={4} lg={3} key={index}>
               <ItemArtikel {...item} />
