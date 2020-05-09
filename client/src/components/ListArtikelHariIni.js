@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-// import { format } from "date-fns";
+import { format } from "date-fns";
 import { useSelector, useDispatch } from "react-redux";
 import { Grid } from "@material-ui/core";
 
@@ -8,17 +8,17 @@ import ItemArtikel from "./ItemArtikel";
 import Loading from "./Loading";
 import Title from "./Title";
 
-// const stringDateQuery = (date) => format(date, "MM-dd-yyyy");
+const stringDateQuery = (date) => format(date, "MM-dd-yyyy");
 
 const ListArtikelHariIni = () => {
   const { list, loading, message } = useSelector(getArticles);
   const dispatch = useDispatch();
 
-  // const query = `createdAt=${stringDateQuery(new Date())}`;
+  const query = `createdAt=${stringDateQuery(new Date())}`;
 
   useEffect(() => {
-    dispatch(loadArticles(""));
-  }, [dispatch]);
+    dispatch(loadArticles(query));
+  }, [dispatch, query]);
 
   if (loading) return <Loading />;
 
