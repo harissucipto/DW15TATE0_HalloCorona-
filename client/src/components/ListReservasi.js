@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Paper,
@@ -17,6 +17,12 @@ import { Redirect } from "react-router-dom";
 import { HOME } from "../constants/routes";
 import DetailReservasi from "./DetailReservasi";
 import DetailKonsultasi from "./DetailKonsultasi";
+import { format } from "date-fns";
+const stringDate = (dateString) => {
+  if (!dateString) return "-";
+
+  return format(new Date(dateString), "d MMMM yyyy ");
+};
 
 const colorStatus = {
   "Waiting Live Consultation": "green",
@@ -34,16 +40,24 @@ const isReplied = (status) => {
   return status !== "Waiting Approve Consultation Live";
 };
 
+const listStatus = [
+  "",
+  "Waiting Live Consultation",
+  "Waiting Approve Consultation Live",
+  "Cancel",
+];
+
 const ListReservasi = () => {
   const { list, loading, message } = useSelector(getConsultations);
   const dispatch = useDispatch();
   const isLogin = useSelector(checkIsLogin);
+  const [selectStatus, setSelectStatus] = useState("");
 
   useEffect(() => {
     if (isLogin) {
-      dispatch(loadConsultations);
+      dispatch(loadConsultations(`status=${selectStatus}`));
     }
-  }, [dispatch, isLogin]);
+  }, [dispatch, isLogin, selectStatus]);
 
   if (!isLogin) return <Redirect to={HOME} />;
 
@@ -53,6 +67,20 @@ const ListReservasi = () => {
 
   return (
     <div>
+      <div>
+        Filter Status:
+        <select
+          value={selectStatus}
+          onChange={(e) => setSelectStatus(e.target.value)}
+        >
+          {listStatus.map((item) => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))}
+        </select>
+      </div>
+
       {!loading && !list.length ? (
         <div>
           <hr />
@@ -84,7 +112,7 @@ const ListReservasi = () => {
                       {item?.subject ?? "-"}
                     </TableCell>
                     <TableCell style={styles.content}>
-                      {item?.createdAt || "-"}
+                      {stringDate(item?.createdAt) ?? "-"}
                     </TableCell>
                     <TableCell
                       style={{

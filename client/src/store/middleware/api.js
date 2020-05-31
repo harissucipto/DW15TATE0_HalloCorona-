@@ -20,7 +20,7 @@ const api = ({ dispatch }) => (next) => async (action) => {
 
   try {
     const { data: response } = await axios.request({
-      baseURL: "https://hello-corona-hs.herokuapp.com/api/v1/",
+      baseURL: "http://localhost:5000/api/v1/",
       url,
       method,
       data,

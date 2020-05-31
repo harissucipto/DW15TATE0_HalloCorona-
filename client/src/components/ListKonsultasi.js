@@ -14,7 +14,7 @@ const ListKonsultasi = () => {
 
   useEffect(() => {
     if (isLogin) {
-      dispatch(loadConsultations);
+      dispatch(loadConsultations(""));
     }
   }, [dispatch, isLogin]);
 

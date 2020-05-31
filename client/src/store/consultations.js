@@ -78,12 +78,12 @@ export const {
 const url = "/consultations";
 
 // Action Creators
-export const loadConsultations = (dispatch, getState) => {
+export const loadConsultations = (query) => (dispatch, getState) => {
   const { token } = getAuth(getState());
 
   return dispatch(
     apiCallBegan({
-      url: url,
+      url: `${url}?${query}`,
       ...getConfigHeader(token),
       onStart: consultationsRequested.type,
       onSuccess: consultationsReceived.type,
